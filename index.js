@@ -4,6 +4,12 @@ import stock from './data/stock-price.js';
 const app = express();
 const port = 3001;
 
+// Avoid any CORS error when client-side fetching
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 // Products endpoint
 app.get('/api/products', (req, res) => {
   res.send(products);
